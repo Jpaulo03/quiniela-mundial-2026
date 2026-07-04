@@ -1,19 +1,16 @@
  
 const express = require('express');
-const sequelize = require('./src/config/database');
+const { sequelize } = require('./src/models/index');
 require('dotenv').config();
 
 const app = express();
 
-// Middleware para parsear JSON
 app.use(express.json());
 
-// Ruta de prueba
 app.get('/', (req, res) => {
   res.json({ mensaje: 'API Quiniela Mundial 2026 funcionando' });
 });
 
-// Conexión a la base de datos e inicio del servidor
 const iniciarServidor = async () => {
   try {
     await sequelize.authenticate();
