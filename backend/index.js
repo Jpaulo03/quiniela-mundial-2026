@@ -1,11 +1,14 @@
- 
 const express = require('express');
 const { sequelize } = require('./src/models/index');
 require('dotenv').config();
 
+const authRoutes = require('./src/routes/authRoutes');
+
 const app = express();
 
 app.use(express.json());
+
+app.use('/api/auth', authRoutes);
 
 app.get('/', (req, res) => {
   res.json({ mensaje: 'API Quiniela Mundial 2026 funcionando' });
