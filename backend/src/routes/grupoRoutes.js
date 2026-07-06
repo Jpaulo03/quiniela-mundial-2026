@@ -1,4 +1,3 @@
- 
 const express = require('express');
 const router = express.Router();
 const {
@@ -9,8 +8,9 @@ const {
   obtenerParticipantes,
 } = require('../controllers/grupoController');
 const { verificarToken } = require('../middlewares/authMiddleware');
+const { validarGrupo } = require('../middlewares/validaciones');
 
-router.post('/', verificarToken, crearGrupo);
+router.post('/', verificarToken, validarGrupo, crearGrupo);
 
 router.get('/mis-grupos', verificarToken, obtenerMisGrupos);
 

@@ -1,4 +1,3 @@
- 
 const express = require('express');
 const router = express.Router();
 const {
@@ -8,12 +7,13 @@ const {
   actualizarPartido,
 } = require('../controllers/partidoController');
 const { verificarToken, verificarAdmin } = require('../middlewares/authMiddleware');
+const { validarPartido } = require('../middlewares/validaciones');
 
 router.get('/', verificarToken, obtenerPartidos);
 
 router.get('/:id', verificarToken, obtenerPartidoPorId);
 
-router.post('/', verificarToken, verificarAdmin, crearPartido);
+router.post('/', verificarToken, verificarAdmin, validarPartido, crearPartido);
 
 router.put('/:id', verificarToken, verificarAdmin, actualizarPartido);
 

@@ -2,6 +2,7 @@ const express = require('express');
 const { sequelize } = require('./src/models/index');
 require('dotenv').config();
 
+const cors = require('cors');
 const authRoutes = require('./src/routes/authRoutes');
 const usuarioRoutes = require('./src/routes/usuarioRoutes');
 const grupoRoutes = require('./src/routes/grupoRoutes');
@@ -12,6 +13,12 @@ const { sincronizarPartidos } = require('./src/services/sincronizacionService');
 const dashboardRoutes = require('./src/routes/dashboardRoutes');
 
 const app = express();
+
+app.use(cors({
+  origin: 'http://localhost:5173',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 
 app.use(express.json());
 

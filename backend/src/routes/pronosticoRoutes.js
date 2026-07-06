@@ -1,4 +1,3 @@
- 
 const express = require('express');
 const router = express.Router();
 const {
@@ -8,8 +7,9 @@ const {
   obtenerPosicionEnGrupo,
 } = require('../controllers/pronosticoController');
 const { verificarToken } = require('../middlewares/authMiddleware');
+const { validarPronostico } = require('../middlewares/validaciones');
 
-router.post('/', verificarToken, registrarPronostico);
+router.post('/', verificarToken, validarPronostico, registrarPronostico);
 
 router.put('/:id', verificarToken, modificarPronostico);
 
