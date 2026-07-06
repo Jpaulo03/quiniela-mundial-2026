@@ -7,6 +7,8 @@ const usuarioRoutes = require('./src/routes/usuarioRoutes');
 const grupoRoutes = require('./src/routes/grupoRoutes');
 const partidoRoutes = require('./src/routes/partidoRoutes');
 const pronosticoRoutes = require('./src/routes/pronosticoRoutes');
+const cron = require('node-cron');
+const { sincronizarPartidos } = require('./src/services/sincronizacionService');
 
 const app = express();
 
@@ -33,6 +35,11 @@ const iniciarServidor = async () => {
 
     await sequelize.sync({ force: false });
     console.log('Modelos sincronizados');
+
+    cron.schedule('*/20 * * * *', () => {
+      sincronizarPartidos();
+    });
+    console.log('Sincronización automática activada');
 
     const puerto = process.env.PORT || 3000;
     app.listen(puerto, () => {
