@@ -5,6 +5,7 @@ require('dotenv').config();
 const authRoutes = require('./src/routes/authRoutes');
 const usuarioRoutes = require('./src/routes/usuarioRoutes');
 const grupoRoutes = require('./src/routes/grupoRoutes');
+const partidoRoutes = require('./src/routes/partidoRoutes');
 
 const app = express();
 
@@ -15,6 +16,8 @@ app.use('/api/auth', authRoutes);
 app.use('/api/usuarios', usuarioRoutes);
 
 app.use('/api/grupos', grupoRoutes);
+
+app.use('/api/partidos', partidoRoutes);
 
 app.get('/', (req, res) => {
   res.json({ mensaje: 'API Quiniela Mundial 2026 funcionando' });
