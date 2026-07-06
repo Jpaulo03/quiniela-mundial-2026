@@ -6,6 +6,7 @@ const authRoutes = require('./src/routes/authRoutes');
 const usuarioRoutes = require('./src/routes/usuarioRoutes');
 const grupoRoutes = require('./src/routes/grupoRoutes');
 const partidoRoutes = require('./src/routes/partidoRoutes');
+const pronosticoRoutes = require('./src/routes/pronosticoRoutes');
 
 const app = express();
 
@@ -18,6 +19,8 @@ app.use('/api/usuarios', usuarioRoutes);
 app.use('/api/grupos', grupoRoutes);
 
 app.use('/api/partidos', partidoRoutes);
+
+app.use('/api/pronosticos', pronosticoRoutes);
 
 app.get('/', (req, res) => {
   res.json({ mensaje: 'API Quiniela Mundial 2026 funcionando' });
